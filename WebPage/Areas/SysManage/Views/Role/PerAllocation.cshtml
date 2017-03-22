@@ -1,0 +1,116 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE HTML>
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnClose">
+				&times;
+			</button>
+			<h4 class="modal-title" id="myModalLabel">
+				分配权限
+			</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<table class="table table-striped table-bordered table-hover dataTables-example" style="text-align:center;">
+					<thead>
+						<tr>
+							<th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
+							<th style="width:200px!important;">模块名称</th>
+							<th>权限</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							var module = ViewData["ModuleList"] as dynamic;
+							var permission = ViewData["PermissionList"] as List<Domain.SYS_PERMISSION>;
+							var selectper = ViewData["selectper"] as List<string>;
+							if (module != null)
+							{
+								foreach (var item in module)
+								{
+									<tr>
+										<td class="tn">
+											@{
+												if (permission.FindAll(p => p.MODULEID == item.ID).Count > 0)
+												{
+													<input name="ckb_module" class="icheck_box" type="checkbox" value="" data-id="@item.ID" />
+												}
+											}
+										</td>
+										<td style="width:200px!important;text-align:left;"><a href="javascript:void(0)"><i class="@item.ICON"></i>@Html.Raw(item.MODULENAME)</a></td>
+										<td style="text-align:left;">
+											<div class="permissionlist">
+												@{
+													if (permission != null && permission.Count > 0 && permission.FindAll(p => p.MODULEID == item.ID).Count > 0)
+													{
+														foreach (var per in permission.FindAll(p => p.MODULEID == item.ID))
+														{
+															var sel = selectper.Find(p => p == per.ID.ToString());
+															<label class="icheck_line"><input name="ckb_per" type="checkbox" data-module="@item.ID" class="icheck_box" value="@per.ID" @(sel != null ? "checked" : "") /><i class="@per.ICON"></i>@per.NAME</label>
+														}
+													}
+												}
+											</div>
+										</td>
+									</tr>
+														}
+													}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">
+				关闭
+			</button>
+			<button type="button" class="btn btn-primary" id="btnSubmit">
+				确定
+			</button>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="hdRoleId" value="@ViewData["RoleId"]" />
+<script src="~/Content/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('input[name="checkall"').on("change", function () {
+			var flag = false;
+			if ($('input[name="checkall"').attr("checked") == 'checked') flag = true;
+			$("input[name='ckb_module']").attr("checked", flag);
+			$(".icheck_line input[name='ckb_per']").attr("checked", flag);
+		});
+
+		$('input[name="ckb_module"]').on("change", function () {
+			var flag = false;
+			if ($('input[name="ckb_module"').attr("checked") == 'checked') flag = true;
+			$("input[data-module='" + $(this).attr("data-id") + "']").attr("checked", flag);
+		});
+		//取消按钮后刷新页面
+		$('#btnCancel,#btnClose').click(function () {
+			window.location.reload();
+		});
+		//提交保存
+		$('#btnSubmit').click(function () {
+			var perid = '';
+			$('input[name="ckb_per"]:checked').each(function () {
+				perid += $(this).attr('value') + ',';
+			});
+			$.post('/SysManage/Role/SaveAllocation', {
+				roleId: $('#hdRoleId').val(),
+				perid: perid
+			}, function (result) {
+				if (result.Status == 'y') {
+					alert('保存成功');
+					window.location.reload();
+				} else {
+					alert('保存失败');
+					window.location.reload();
+				}
+			}, 'json');
+		});
+	});
+</script>

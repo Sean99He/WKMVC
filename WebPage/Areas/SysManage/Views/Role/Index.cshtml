@@ -1,0 +1,155 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE HTML>
+<link href="~/Content/assets/css/dpl-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/bui-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/page-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/prettify.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+	<div id="grid"></div>
+	<div id="content" class="hide">
+		<form id="J_Form" class="form-horizontal">
+			<div class="row">
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>角色名称：</label>
+					<div class="controls">
+						<input type="hidden" name="ID" />
+						<input name="ROLENAME" type="text" data-rules="{required:true}" class="input-normal control-text">
+					</div>
+				</div>
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>是否是游客：</label>
+					<div class="controls">
+						<select data-rules="{required:true}" name="ISCUSTOM" class="input-normal">
+							<option value="">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<script src="~/Content/assets/js/jquery-1.8.1.min.js"></script>
+<script src="~/Content/assets/js/bui-min.js"></script>
+<script src="~/Content/assets/js/config-min.js"></script>
+<script src="~/Content/bootstrap.min.js"></script>
+<script type="text/javascript">
+	BUI.use('common/page');
+	BUI.use(['bui/grid', 'bui/data'], function (Grid, Data) {
+		var columns = [{ title: '角色名称', dataIndex: 'ROLENAME', width: 200 },
+				{ title: '是否是游客', dataIndex: 'ISCUSTOM' },
+				{
+					title: '操作', renderer: function () {
+						return '<span class="grid-command btn-edit">编辑</span>';
+					}
+				}
+		],
+		  store = new Data.Store({
+		  	url: "../Role/GetList",
+		  	autoLoad: true
+		  }),
+		  editing = new Grid.Plugins.DialogEditing({
+		  	contentId: 'content',
+		  	triggerCls: 'btn-edit',
+		  	editor: {
+		  		success: function () {
+		  			var edtor = this,
+                            form = edtor.get('form'),
+                            editType = editing.get('editType');
+		  			if (editType == 'add') {
+		  				url = '../Role/SaveOrUpdate';
+		  			} else {
+		  				url = '../Role/SaveOrUpdate';
+		  			}
+		  			//检验
+		  			form.valid();
+		  			if (form.isValid()) {
+		  				form.ajaxSubmit({ //表单异步提交
+		  					url: url,
+		  					success: function (data) {
+		  						record = form.serializeToObject();
+		  						if (data == 0) {
+		  							BUI.Message.Alert('操作失败');
+		  						} else {
+		  							if (editType == 'add') {
+		  								alert('添加成功');
+		  								this.window.location = "/SysManage/Role";
+		  							} else {
+		  								alert('编辑成功');
+		  								this.window.location = "/SysManage/Role";
+		  							}
+		  							edtor.accept();
+		  						}
+		  					},
+		  					error: function () {
+		  						BUI.Message.Alert(data.Message, 'error');
+		  					}
+		  				});
+		  			}
+		  		}
+		  	}
+		  }),
+		  grid = new Grid.Grid({
+		  	render: '#grid',
+		  	columns: columns,
+		  	width: 700,
+		  	forceFit: true,
+		  	store: store,
+		  	plugins: [Grid.Plugins.CheckSelection, editing],
+		  	tbar: {
+		  		items: [{
+		  			btnCls: 'button button-small',
+		  			text: '<i class="icon-plus"></i>添加',
+		  			listeners: {
+		  				'click': addFunction
+		  			}
+		  		},
+				{
+					btnCls: 'button button-small',
+					text: '<i class="icon-remove"></i>删除',
+					listeners: {
+						'click': delFunction
+					}
+				}, {
+					btnCls: 'button button-small',
+					text: '<i class="icon-remove"></i>分配权限',
+					listeners: {
+						'click': allocation
+					}
+				}]
+		  	}
+		  });
+		grid.render();
+		function addFunction() {
+			editing.add();
+		}
+		function delFunction() {
+			var selections = grid.getSelection();
+			$.post("../Role/Delete", { entityList: selections }, function (result) {
+				if (result > 0)
+					alert('删除成功');
+				else {
+					alert('删除失败');
+					window.location.reload();
+				}
+			});
+			store.remove(selections);
+		}
+		//分配权限
+		function allocation() {
+			var selections = grid.getSelection();
+			if (selections.length != 1) {
+				alert('请选择一条数据');
+				return;
+			}
+			$('#myModal').load('/SysManage/Role/PerAllocation?RoleId=' + selections[0].ID);
+			$('#myModal').modal('show');
+		}
+	});
+</script>

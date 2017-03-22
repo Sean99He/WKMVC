@@ -1,0 +1,22 @@
+D:\wkmvc\wkmvc\Domain\bin\Debug\Domain.dll
+D:\wkmvc\wkmvc\Domain\bin\Debug\Domain.pdb
+D:\wkmvc\wkmvc\Domain\obj\Debug\Domain.dll
+D:\wkmvc\wkmvc\Domain\obj\Debug\Domain.pdb
+D:\wkmvc\wkmvc\Domain\bin\Debug\Domain.dll.config
+D:\wkmvc\wkmvc\Domain\bin\Debug\EntityFramework.dll
+D:\wkmvc\wkmvc\Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\wkmvc\wkmvc\Domain\bin\Debug\EntityFramework.xml
+D:\wkmvc\wkmvc\Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\wkmvc\wkmvc\Domain\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\wkmvc\wkmvc\Domain\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\Domain.dll.config
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\Domain.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\Domain.pdb
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\EntityFramework.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\EntityFramework.xml
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\obj\Debug\Domain.dll
+D:\virtualsvn server\wkmvc\trunk\Domain\obj\Debug\Domain.pdb

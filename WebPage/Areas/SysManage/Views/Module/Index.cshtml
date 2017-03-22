@@ -1,0 +1,167 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE HTML>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="~/Content/assets/css/dpl-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/bui-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/page-min.css" rel="stylesheet" />
+<link href="~/Content/assets/css/prettify.css" rel="stylesheet" />
+<div class="container">
+	<div id="grid"></div>
+	<div id="content" class="hide">
+		<form id="J_Form" class="form-horizontal">
+			<div class="row">
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>菜单名称：</label>
+					<div class="controls">
+						<input type="hidden" name="ID" />
+						<input name="NAME" type="text" data-rules="{required:true}" class="input-normal control-text">
+					</div>
+				</div>
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>父菜单：</label>
+					<div class="controls">
+						<select data-rules="{required:true}" name="PARENTID" class="input-normal">
+							<option value="">请选择</option>
+							<option value="16">系统管理</option>
+							<option value="24">参数配置</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="control-group span8 ">
+					<label class="control-label">url：</label>
+					<div class="controls">
+						<input name="MODULEPATH" type="text" data-rules="{required:true}" class="input-normal control-text">
+					</div>
+				</div>
+				<div class="control-group span8 ">
+					<label class="control-label">菜单代码：</label>
+					<div class="controls">
+						<input name="ALIAS" type="text" data-rules="{required:true}" class="input-normal control-text">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>排列顺序：</label>
+					<div class="controls">
+						<input name="SHOWORDER" type="text" data-rules="{required:true}" class="input-normal control-text">
+					</div>
+				</div>
+				<div class="control-group span8">
+					<label class="control-label"><s>*</s>是否可用：</label>
+					<div class="controls">
+						<select data-rules="{required:true}" name="ISSHOW" class="input-normal">
+							<option value="">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="~/Content/assets/js/jquery-1.8.1.min.js"></script>
+<script src="~/Content/assets/js/bui-min.js"></script>
+<script src="~/Content/assets/js/config-min.js"></script>
+<script type="text/javascript">
+	BUI.use('common/page');
+	BUI.use(['bui/grid', 'bui/data'], function (Grid, Data) {
+		var columns = [{ title: '菜单名称', dataIndex: 'NAME', width: 200 },
+				{ title: '菜单代码', dataIndex: 'ALIAS' },
+				{ title: 'url', dataIndex: 'MODULEPATH', width: 200 },
+				{ title: '是否可用', dataIndex: 'ISSHOW' },
+				{ title: '排列顺序', dataIndex: 'SHOWORDER' },
+				{
+					title: '操作', renderer: function () {
+						return '<span class="grid-command btn-edit">编辑</span>';
+					}
+				}
+		],
+		  store = new Data.Store({
+		  	url: "../Module/GetList",
+		  	autoLoad: true
+		  }),
+		  editing = new Grid.Plugins.DialogEditing({
+		  	contentId: 'content',
+		  	triggerCls: 'btn-edit',
+		  	editor: {
+		  		success: function () {
+		  			var edtor = this,
+                            form = edtor.get('form'),
+                            editType = editing.get('editType');
+		  			if (editType == 'add') {
+		  				url = '../Module/SaveOrUpdate';
+		  			} else {
+		  				url = '../Module/SaveOrUpdate';
+		  			}
+		  			//检验
+		  			form.valid();
+		  			if (form.isValid()) {
+		  				form.ajaxSubmit({ //表单异步提交
+		  					url: url,
+		  					success: function (data) {
+		  						record = form.serializeToObject();
+		  						if (data == 0) {
+		  							BUI.Message.Alert('操作失败');
+		  						} else {
+		  							if (editType == 'add') {
+		  								alert('添加成功');
+		  								this.window.location = "/SysManage/Module";
+		  							} else {
+		  								alert('编辑成功');
+		  								this.window.location = "/SysManage/Module";
+		  							}
+		  							edtor.accept();
+		  						}
+		  					},
+		  					error: function () {
+		  						BUI.Message.Alert(data.Message, 'error');
+		  					}
+		  				});
+		  			}
+		  		}
+		  	}
+		  }),
+		  grid = new Grid.Grid({
+		  	render: '#grid',
+		  	columns: columns,
+		  	width: 700,
+		  	forceFit: true,
+		  	store: store,
+		  	plugins: [Grid.Plugins.CheckSelection, editing],
+		  	tbar: {
+		  		items: [{
+		  			btnCls: 'button button-small',
+		  			text: '<i class="icon-plus"></i>添加',
+		  			listeners: {
+		  				'click': addFunction
+		  			}
+		  		},
+				{
+					btnCls: 'button button-small',
+					text: '<i class="icon-remove"></i>删除',
+					listeners: {
+						'click': delFunction
+					}
+				}]
+		  	}
+		  });
+		grid.render();
+		function addFunction() {
+			editing.add();
+		}
+		function delFunction() {
+			var selections = grid.getSelection();
+			$.post("../Module/Delete", { entityList: selections }, function (result) {
+				if (result > 0)
+					alert('删除成功');
+			});
+			store.remove(selections);
+		}
+	});
+</script>

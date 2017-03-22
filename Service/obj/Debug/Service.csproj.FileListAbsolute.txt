@@ -1,0 +1,36 @@
+D:\wkmvc\wkmvc\Service\bin\Debug\Service.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\Service.pdb
+D:\wkmvc\wkmvc\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+D:\wkmvc\wkmvc\Service\obj\Debug\Service.dll
+D:\wkmvc\wkmvc\Service\obj\Debug\Service.pdb
+D:\wkmvc\wkmvc\Service\bin\Debug\Domain.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\EntityFramework.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\Domain.pdb
+D:\wkmvc\wkmvc\Service\bin\Debug\EntityFramework.xml
+D:\wkmvc\wkmvc\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\Common.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\EntityFramework.SqlServer.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\Common.pdb
+D:\wkmvc\wkmvc\Service\bin\Debug\EntityFramework.SqlServer.xml
+D:\wkmvc\wkmvc\Service\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\Newtonsoft.Json.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\log4net.dll
+D:\wkmvc\wkmvc\Service\bin\Debug\log4net.xml
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Service.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Service.pdb
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Common.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Domain.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\EntityFramework.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\EntityFramework.SqlServer.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\log4net.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Newtonsoft.Json.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Common.pdb
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\Domain.pdb
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\EntityFramework.xml
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\EntityFramework.SqlServer.xml
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\log4net.xml
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\virtualsvn server\wkmvc\trunk\Service\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\virtualsvn server\wkmvc\trunk\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+D:\virtualsvn server\wkmvc\trunk\Service\obj\Debug\Service.dll
+D:\virtualsvn server\wkmvc\trunk\Service\obj\Debug\Service.pdb

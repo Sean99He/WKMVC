@@ -1,0 +1,14 @@
+D:\wkmvc\wkmvc\Common\bin\Debug\Common.dll
+D:\wkmvc\wkmvc\Common\bin\Debug\Common.pdb
+D:\wkmvc\wkmvc\Common\obj\Debug\Common.dll
+D:\wkmvc\wkmvc\Common\obj\Debug\Common.pdb
+D:\wkmvc\wkmvc\Common\bin\Debug\Newtonsoft.Json.dll
+D:\wkmvc\wkmvc\Common\bin\Debug\log4net.dll
+D:\wkmvc\wkmvc\Common\bin\Debug\log4net.xml
+D:\virtualsvn server\wkmvc\trunk\Common\bin\Debug\Common.dll
+D:\virtualsvn server\wkmvc\trunk\Common\bin\Debug\Common.pdb
+D:\virtualsvn server\wkmvc\trunk\Common\bin\Debug\log4net.dll
+D:\virtualsvn server\wkmvc\trunk\Common\bin\Debug\Newtonsoft.Json.dll
+D:\virtualsvn server\wkmvc\trunk\Common\bin\Debug\log4net.xml
+D:\virtualsvn server\wkmvc\trunk\Common\obj\Debug\Common.dll
+D:\virtualsvn server\wkmvc\trunk\Common\obj\Debug\Common.pdb

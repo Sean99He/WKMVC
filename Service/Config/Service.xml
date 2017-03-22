@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+	<description>Spring注入Service，容器指向本层层封装的接口，舍弃Dao层，减少代码量</description>
+	<!--系统管理begin-->
+	<!--用户管理-->
+	<object id="Service.User" type="Service.ServiceImp.UserManage,Service" singleton="false">
+	</object>
+	<!--用户拓展信息-->
+	<object id="Service.UserInfo" type="Service.ServiceImp.UserInfoManage,Service" singleton="false">
+	</object>
+	<!--用户授权-->
+	<object id="Service.UserPermission" type="Service.ServiceImp.UserPermissionManage,Service" singleton="false">
+	</object>
+	<!--用户角色-->
+	<object id="Service.UserRole" type="Service.ServiceImp.UserRoleManage,Service" singleton="false">
+	</object>
+	<!--用户岗位-->
+	<object id="Service.PostUser" type="Service.ServiceImp.PostUserManage,Service" singleton="false">
+	</object>
+	<!--用户部门-->
+	<object id="Service.UserDepartment" type="Service.ServiceImp.UserDepartmentManage,Service" singleton="false">
+	</object>
+	<!--部门管理-->
+	<object id="Service.Department" type="Service.ServiceImp.DepartmentManage,Service" singleton="false">
+	</object>
+	<!--权限管理-->
+	<object id="Service.Permission" type="Service.ServiceImp.PermissionManage,Service" singleton="false">
+	</object>
+	<!--模块管理-->
+	<object id="Service.Module" type="Service.ServiceImp.ModuleManage,Service" singleton="false">
+	</object>
+	<!--预置编码管理-->
+	<object id="Service.Code" type="Service.ServiceImp.CodeManage,Service" singleton="false">
+	</object>
+	<!--用户授权-->
+	<object id="Service.RolePermission" type="Service.ServiceImp.RolePermissionManage,Service" singleton="false">
+		<property name="PermissionManage" ref="Service.Permission"/>
+	</object>
+	<!--角色管理-->
+	<object id="Service.Role" type="Service.ServiceImp.RoleManage,Service" singleton="false">
+	</object>
+	<!--系统管理end-->
+</objects>
